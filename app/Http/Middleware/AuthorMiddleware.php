@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthorMiddleware
 {
@@ -16,7 +17,7 @@ class AuthorMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::check()){
+        if(Auth::check() && Auth::user()->is_in_role('author')) {
             return $next($request);
         }
         return redirect(status: 401)->route("home")->with('error',"not access to admin");
