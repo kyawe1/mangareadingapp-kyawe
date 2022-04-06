@@ -1,0 +1,18 @@
+.min{
+    min-height:75vh;
+}
+.footer{
+    position: relative;
+    display:block;
+    z-index:100;
+    background-color:rgb(211, 38, 38);
+}
+.footer-manga-reader{
+    position:fixed;
+    display: block;
+    bottom:0;
+    z-index:1;
+}
+body,html{
+    min-height:100vh;
+}
