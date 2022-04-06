@@ -2,7 +2,7 @@
 
 
 use App\Http\Controllers\BasicControllers\{AuthController,SeriesController,ChapterController};
-use App\Http\Controllers\AuthenticatedControllers\{BookMarkController, RateController};
+use App\Http\Controllers\AuthenticatedControllers\{BookMarkController, RateController,ApplyAuthorController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,4 +40,5 @@ Route::group(['as'=> 'loggedin.'],function(){
     Route::get('saved-series/unbookmark/{id}',[BookMarkController::class,"unbookmark"])->name('unbookmark');
     Route::get('rate/create/{id}/{rate}',[RateController::class,"rate"])->name('create-rate');
     Route::get('rate/create/{id}',[RateController::class,"unrate"])->name('delete-rate');
+    Route::post('author/add',[ApplyAuthorController::class,"create"])->name('author-create');
 });

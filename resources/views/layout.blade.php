@@ -36,11 +36,18 @@
                                     <a href="{{route('loggedin.saved-series')}}" class="dropdown-item ">Saved Series</a>
                                 </li>
                                 <li>
+                                    <form action="{{route('loggedin.author-create')}}" method="post">
+                                        @csrf 
+                                        <input type="submit" value="Apply Author" class="dropdown-item" />
+                                    </form>
+                                </li>
+                                <li>
                                     <form action="{{route('auth.signout')}}" method="post">
                                         @csrf 
                                         <input type="submit" value="Logout" class="dropdown-item" />
                                     </form>
                                 </li>
+                                
                             </ul>
                         </div>
                     </li>
