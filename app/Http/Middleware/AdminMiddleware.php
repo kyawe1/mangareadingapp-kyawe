@@ -17,7 +17,10 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::check() && Auth::user()->is_in_role('admin')) {
+        //** @var \App\Models\Users */
+        $user=request()->user();
+        $role=$user->is_in_role('admin');
+        if(Auth::check() && $role) {
             return $next($request);
         }
         return redirect(status: 401)->route("home")->with('error',"not access to admin");
