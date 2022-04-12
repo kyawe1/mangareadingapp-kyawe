@@ -8,6 +8,7 @@
                 {{$series->name}}
             </span>
         </div>
+        <a href="{{route('series.detail',['id'=> $series->id])}}" class="stretched-link" ></a>
         <div class="card-body">
             <div class='d-md-flex align-items-center'>
                 <div class="col-12 col-lg-9 col-md-6 text-center text-md-right">

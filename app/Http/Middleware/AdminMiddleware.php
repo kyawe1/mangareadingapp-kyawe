@@ -17,13 +17,16 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        //** @var \App\Models\Users */
-        $user=request()->user();
-        $role=$user->is_in_role('admin');
-        if(Auth::check() && $role) {
-            return $next($request);
-        }
-        return redirect(status: 401)->route("home")->with('error',"not access to admin");
         
+        
+        if (Auth::check()) {
+            //** @var \App\Models\Users */
+            $user = request()->user();
+            $role = $user->is_in_role('admin');
+            if ( $role) {
+                return $next($request);
+            }
+        }
+        return redirect(status: 401)->route("home")->with('error', "not access to admin");
     }
 }

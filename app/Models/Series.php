@@ -11,6 +11,9 @@ class Series extends Model
 
     protected $table='series';
 
+    protected $guarded=[
+    ];
+
     public function is_bookmarked($user_id){
         return SavedBlogs::where('user_id',$user_id)->where('series_id',$this->id)->exists();
     }
@@ -20,7 +23,10 @@ class Series extends Model
     public function rated($user_id){
         return Rate::where('user_id',$user_id)->where('series_id',$this->id)->exists();
     }
-    public function user(){
+    public function author(){
         return $this->belongsTo('App\Models\User','user_id');
+    }
+    public function chapter(){
+        return $this->hasMany('App\Models\Chapter','series_id');
     }
 }

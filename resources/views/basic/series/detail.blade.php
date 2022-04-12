@@ -2,7 +2,7 @@
 @section('body')
 <section class="container">
     <div class="h3 p-2">
-        Sister Wah Wah
+        {{$series->name}}
     </div>
     <div class="w-50 m-auto d-block">
         <img src="{{asset('default.png')}}" class="img-fluid d-block m-auto" />
@@ -10,6 +10,18 @@
     <div>
         <div class="p-4">
             <div class="p-1 mb-1">Author Name</div>
+            <div class="p-1 mb-1">{{$series->author->name}}</div>
+        </div>
+        <div class="p-4">
+            <div class="p-1 mb-1">Type</div>
+            <div class="p-1 mb-1">{{$series->type}}</div>
+        </div>
+        <div class="p-4">
+            <div class="p-1 mb-1">Release Date</div>
+            <div class="p-1 mb-1">{{$series->release_date}}</div>
+        </div>
+        <!-- <div class="p-4">
+            <div class="p-1 mb-1"></div>
             <div class="p-1 mb-1">Army Genius</div>
         </div>
         <div class="p-4">
@@ -19,19 +31,7 @@
         <div class="p-4">
             <div class="p-1 mb-1">Author Name</div>
             <div class="p-1 mb-1">Army Genius</div>
-        </div>
-        <div class="p-4">
-            <div class="p-1 mb-1">Author Name</div>
-            <div class="p-1 mb-1">Army Genius</div>
-        </div>
-        <div class="p-4">
-            <div class="p-1 mb-1">Author Name</div>
-            <div class="p-1 mb-1">Army Genius</div>
-        </div>
-        <div class="p-4">
-            <div class="p-1 mb-1">Author Name</div>
-            <div class="p-1 mb-1">Army Genius</div>
-        </div>
+        </div> -->
     </div>
     <div class='d-flex align-items-center p-4 m-1'>
         @auth
@@ -71,37 +71,32 @@
     <section class="text-wrap mb-2">
         <div class="h4">Details</div>
         <span class="lh-lg">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim accusamus aspernatur facere,
+            {{$series->description}}
+            <!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim accusamus aspernatur facere,
             culpa cumque, aliquam accusantium a minus aperiam eligendi quod harum libero quae v
-            el provident nobis architecto! Eveniet, aliquid!
+            el provident nobis architecto! Eveniet, aliquid! -->
         </span>
         <span class="btn btn-light btn-outline-info">see more</span>
     </section>
-    <section class="my-1">
+    <section class="my-2 p-1">
         <div class="h5 py-2">
             Chapter Lists
         </div>
+        @if(count($series->chapter)>0)
+        @foreach($series->chapter as $chapter)
         <div class="p-3 border-bottom border-2 ">
             <div class="">Chapter 1</div>
         </div>
-        <div class="p-3 border-bottom border-2 ">
-            <div class="">Chapter 1</div>
-        </div>
-        <div class="p-3 border-bottom border-2 ">
-            <div class="">Chapter 1</div>
-        </div>
-        <div class="p-3 border-bottom border-2 ">
-            <div class="">Chapter 1</div>
-        </div>
-        <div class="p-3 border-bottom border-2 ">
-            <div class="">Chapter 1</div>
-        </div>
-        <div class="p-3 border-bottom border-2 ">
-            <div class="">Chapter 1</div>
-        </div>
+        @endforeach
         <div class="m-2 w-100 d-block mx-auto ">
             <button class="btn btn-light w-100 btn-outline-dark">More</button>
         </div>
+        @else
+        <div class="d-block mx-auto text-center p-4 h5">
+            There's no New Chapter wait until new chapter comes out
+        </div>
+        @endif
+        
     </section>
 </section>
 

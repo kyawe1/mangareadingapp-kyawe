@@ -1,0 +1,50 @@
+@extends('admin.admin_layout')
+@section('admin_body')
+<table class='table table-responsive'>
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Author Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Release
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($series as $i)
+        <tr>
+            <td>
+                {{$i->id}}
+            </td>
+            <td>{{$i->name}}
+            </td>
+            <td>
+                {{$i->type}}
+            </td>
+            <td>
+                {{$i->author->name}}
+            </td>
+            <td>
+                {{$i->description}}
+            </td>
+            <td>
+                {{$i->release_date}}
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
+@endsection

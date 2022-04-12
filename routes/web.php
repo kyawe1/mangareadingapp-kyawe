@@ -3,6 +3,8 @@
 
 use App\Http\Controllers\BasicControllers\{AuthController,SeriesController,ChapterController};
 use App\Http\Controllers\AuthenticatedControllers\{BookMarkController, RateController,ApplyAuthorController};
+use App\Http\Controllers\AdminControllers\{SeriesController as AdminSeries,RateController as AdminRate,ChapterController as AdminChapter};
+use App\Http\Controllers\AuthorControllers\{SeriesController as AuthorSeries,HomeController as  AuthorHome};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,15 +18,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 
-Route::get("series/",[SeriesController::class,"index"])->name('series.index');
+
+Route::get("/",[SeriesController::class,"index"])->name('basic.home');
 Route::get("series/detail/{id}",[SeriesController::class,"detail"])->name('series.detail');
-Route::get("chapter/detail/{id}",[ChapterController::class,"detail"])->name('series.detail');
-
+Route::get("chapter/detail/{id}",[ChapterController::class,"detail"])->name('chapters.detail');
+Route::get("about/",function(){
+    return view("basic.about");
+})->name("about");
 
 Route::group(['prefix'=> 'auth/','as'=> 'auth.'],function(){
     Route::get('login/',[AuthController::class,"login"])->name('login-form')->middleware('guest');
@@ -41,4 +43,24 @@ Route::group(['as'=> 'loggedin.'],function(){
     Route::get('rate/create/{id}/{rate}',[RateController::class,"rate"])->name('create-rate');
     Route::get('rate/create/{id}',[RateController::class,"unrate"])->name('delete-rate');
     Route::post('author/add',[ApplyAuthorController::class,"create"])->name('author-create');
+});
+
+Route::group(['as'=>"admin.","prefix"=> "admin/"],function(){
+    Route::get("series/",[AdminSeries::class,"index"])->name('series-index');
+    Route::get("series/create",[AdminSeries::class,"create"])->name('series-create');
+    Route::post("series/create",[AdminSeries::class,"create_process"])->name('series-create-process');
+    Route::get("series/update/{id}",[AdminSeries::class,"update"])->name('series-update');
+    Route::post("series/update/{id}",[AdminSeries::class,"update_process"])->name('series-update-process');
+    Route::post("series/delete/{id}",[AdminSeries::class,"delete"])->name('series-delete');
+    Route::get("chapter/",[AdminChapter::class,"index"])->name('chapters-index');
+    Route::get("rate/",[AdminRate::class,"index"])->name('rate-index');
+});
+
+Route::group(['as'=>'author.','prefix'=>"author/"],function(){
+    Route::get("series/create",[AuthorSeries::class,"create"])->name('series-create');
+    Route::post("series/create",[AuthorSeries::class,"create_process"])->name('series-create-process');
+    Route::get("series/update/{id}",[AuthorSeries::class,"update"])->name('series-update');
+    Route::post("series/update/{id}",[AuthorSeries::class,"update_process"])->name('series-update-process');
+    Route::post("series/delete/{id}",[AuthorSeries::class,"delete"])->name('series-delete');
+    Route::get("/",[AuthorHome::class,"index"])->name('home');
 });

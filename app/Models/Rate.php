@@ -16,4 +16,11 @@ class Rate extends Model
         'series_id',
         'isLike'
     ];
+
+    public function series(){
+        return $this->belongsTo("App\Models\Series","series_id");
+    }
+    public function user(){
+        return $this->belongsTo("App\Models\User","user_id");
+    }
 }

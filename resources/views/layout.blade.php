@@ -23,8 +23,8 @@
             </button>
             <div class="navbar-collapse collapse" id="navContent">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item mx-lg-2 my-md-2"><a href="#" class="nav-link">Home</a></li>
-                    <li class="nav-item mx-lg-2 my-md-2"><a href="#" class="nav-link">About</a></li>
+                    <li class="nav-item mx-lg-2 my-md-2"><a href="{{(Route::currentRouteName()=='basic.home')? '#' : route('basic.home')}}" class="nav-link {{(Route::currentRouteName()=='basic.home')? 'active' : '' }}">Home</a></li>
+                    <li class="nav-item mx-lg-2 my-md-2"><a href="{{(Route::currentRouteName()=='about')? '#' : route('about')}}" class="nav-link {{(Route::currentRouteName()=='about')? 'active' : '' }}">About</a></li>
                     @auth
                     <li class='nav-item mx-lg-2 my-md-2'>
                         <div class="dropdown">

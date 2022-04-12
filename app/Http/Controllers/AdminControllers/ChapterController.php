@@ -12,7 +12,7 @@ class ChapterController extends Controller
         $this->middleware('admin');
     }
     public function index(){
-        $chapters=Chapter::all()->sortByDescending('created_at');
+        $chapters=Chapter::all()->sortByDesc('created_at');
         return view('admin.chapter.index', ['chapters'=>$chapters]);
     }
 }

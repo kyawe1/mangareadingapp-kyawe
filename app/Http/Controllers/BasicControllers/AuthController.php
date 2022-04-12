@@ -43,6 +43,6 @@ class AuthController extends Controller
         if(Auth::attempt($validated_user)){
             return redirect()->route("home");
         }
-        return redirect()->route("login")->with("error","Invalid credentials");
+        return redirect()->route("auth.login-form")->with("error","Invalid credentials");
     }
 }
