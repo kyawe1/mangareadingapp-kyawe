@@ -15,7 +15,8 @@ class AccountController extends Controller
         $this->middleware('admin');
     }
     public function index(){
-        
+        $users=User::all();
+        return view('admin.account.index',['users'=>$users]);
     }
     public function create(){
         $roles=Roles::all();
@@ -30,15 +31,15 @@ class AccountController extends Controller
         $user=User::create($validated_user);
         $user->add_to_role($role);
         
-        return redirect('/admin/account');
-        // return redirect()->route('admin.account.index');
+        // return redirect('/admin/account');
+        return redirect()->route('admin.account-index');
     }
-    public function edit(){
-        return view('admin.account.edit');
-    }
-    public function edit_process(){
-        return redirect();
-    }
+    // public function edit(){
+    //     return view('admin.account.edit');
+    // }
+    // public function edit_process(){
+    //     return redirect();
+    // }
     public function rules(){
         return [
             'name'=>'required|string',

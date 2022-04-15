@@ -20,7 +20,7 @@ class AuthController extends Controller
 
     public function Logout(){
         auth()->logout();
-        return redirect()->route('home');
+        return redirect()->route('basic.home');
     }
     public function register_process(){
        
@@ -41,7 +41,7 @@ class AuthController extends Controller
             'password'=>"required|min:8|string"
         ]);
         if(Auth::attempt($validated_user)){
-            return redirect()->route("home");
+            return redirect()->route("basic.home");
         }
         return redirect()->route("auth.login-form")->with("error","Invalid credentials");
     }

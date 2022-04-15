@@ -3,7 +3,7 @@
 
 use App\Http\Controllers\BasicControllers\{AuthController,SeriesController,ChapterController};
 use App\Http\Controllers\AuthenticatedControllers\{BookMarkController, RateController,ApplyAuthorController};
-use App\Http\Controllers\AdminControllers\{SeriesController as AdminSeries,RateController as AdminRate,ChapterController as AdminChapter,AccountController as AdminAccount};
+use App\Http\Controllers\AdminControllers\{SeriesController as AdminSeries,RateController as AdminRate,ChapterController as AdminChapter,AccountController as AdminAccount,AuthorController as AdminAuthor};
 use App\Http\Controllers\AuthorControllers\{SeriesController as AuthorSeries,HomeController as  AuthorHome};
 use Illuminate\Support\Facades\Route;
 
@@ -53,9 +53,13 @@ Route::group(['as'=>"admin.","prefix"=> "admin/"],function(){
     Route::post("series/update/{id}",[AdminSeries::class,"update_process"])->name('series-update-process');
     Route::post("series/delete/{id}",[AdminSeries::class,"delete"])->name('series-delete');
     Route::get("chapter/",[AdminChapter::class,"index"])->name('chapters-index');
+    Route::get("account/",[AdminAccount::class,"index"])->name('account-index');
     Route::get("account/create",[AdminAccount::class,"create"])->name('account-create');
     Route::post("account/create",[AdminAccount::class,"create_process"])->name('account-create-process');
     Route::get("rate/",[AdminRate::class,"index"])->name('rate-index');
+    Route::get("author_request_list/",[AdminAuthor::class,"getlist"])->name('author-index');
+    Route::get("author_request_list/accept/{user}",[AdminAuthor::class,"accept"])->name('author-accept');
+    Route::get("author_request_list/delete/{waitingList}",[AdminAuthor::class,"delete"])->name('author-delete');
 });
 
 Route::group(['as'=>'author.','prefix'=>"author/"],function(){

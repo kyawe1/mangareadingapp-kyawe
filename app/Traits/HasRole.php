@@ -25,7 +25,7 @@ trait HasRole
                 'role_id' => $r->id
             ]);
         } catch (Exception $e) {
-            throw new Exception();
+            throw $e;
         }
     }
 }
