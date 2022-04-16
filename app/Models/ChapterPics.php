@@ -9,4 +9,8 @@ class ChapterPics extends Model
 {
     use HasFactory;
     protected $table='chapterpics_model';
+
+    protected $guarded=[
+
+    ];
 }

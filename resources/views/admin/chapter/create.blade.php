@@ -1,6 +1,6 @@
 @extends('admin.admin_layout')
 @section('admin_body')
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
     @csrf
     <div class="mb-2">
         <label for="name" class="form-label">Name</label>
@@ -15,7 +15,11 @@
         <textarea type="text" name="series_id" id="series_id" class="form-control" placeholder="Description"></textarea>
     </div>
     <div class="mb-2">
-        <input type="submit" name="name" id="name" class="form-control" class="btn btn-primary w-75 d-block m-auto"/>
+        <label for="title" class="form-label">Chapter Pictures</label>
+        <input type="file" name="image[]" id="image" class="form-control" multiple/>
+    </div>
+    <div class="mb-2">
+        <input type="submit"  class="form-control" class="btn btn-primary w-75 d-block m-auto"/>
     </div>
 </form>
 @endsection

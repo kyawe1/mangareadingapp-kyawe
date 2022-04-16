@@ -53,6 +53,8 @@ Route::group(['as'=>"admin.","prefix"=> "admin/"],function(){
     Route::post("series/update/{id}",[AdminSeries::class,"update_process"])->name('series-update-process');
     Route::post("series/delete/{id}",[AdminSeries::class,"delete"])->name('series-delete');
     Route::get("chapter/",[AdminChapter::class,"index"])->name('chapters-index');
+    Route::get("chapter/create",[AdminChapter::class,"create"])->name('chapters-create');
+    Route::post("chapter/create",[AdminChapter::class,"create_process"])->name('chapters-create_process');
     Route::get("account/",[AdminAccount::class,"index"])->name('account-index');
     Route::get("account/create",[AdminAccount::class,"create"])->name('account-create');
     Route::post("account/create",[AdminAccount::class,"create_process"])->name('account-create-process');
